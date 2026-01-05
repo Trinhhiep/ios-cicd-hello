@@ -1,0 +1,26 @@
+name: iOS CI Beginner
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Debug folder
+        run: ls
+
+      - name: Build iOS App
+        run: |
+          xcodebuild \
+            -project CICDHello.xcodeproj \
+            -scheme CICDHello \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO \
+            clean build
